@@ -4,10 +4,7 @@ name: Build Package
 on:
   repository_dispatch:
     types:
-      - biglinux/*
-      - AUR/*
-      - xivastudio/*
-      - URL/*
+      - *
 
   workflow_dispatch:
     inputs:
