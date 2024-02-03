@@ -292,19 +292,19 @@ runs:
         for i in *.zst; do if [ -n "$(ls $i | grep :)" ]; then mv $i $(echo $i | sed 's/:/-/'); fi; done
         #done
         
-    - name: sign package
-      shell: bash -O extglob {0}
-      run: |
-        # "Assinar Pacote"
-        cat <(echo -e "${{ inputs.gpg-key }}") | gpg --batch --import &>/dev/null
-        #for i in $(find -type f -name PKGBUILD | sed 's/PKGBUILD//'); do
-        #cd $i
-        gitfolder=$(find -type f -name PKGBUILD | sed 's/PKGBUILD//')
-        cd $gitfolder
-        for p in $(find $PWD -maxdepth 1 -regex '.*\.pkg\.tar\.\(xz\|zst\)'); do
-          gpg --pinentry-mode loopback --passphrase "${{ inputs.gpg-passphrase }}" --detach-sign ${p}
-        done
-        #done
+    #- name: sign package
+    #  shell: bash -O extglob {0}
+    #  run: |
+    #    # "Assinar Pacote"
+    #    cat <(echo -e "${{ inputs.gpg-key }}") | gpg --batch --import &>/dev/null
+    #    #for i in $(find -type f -name PKGBUILD | sed 's/PKGBUILD//'); do
+    #    #cd $i
+    #    gitfolder=$(find -type f -name PKGBUILD | sed 's/PKGBUILD//')
+    #    cd $gitfolder
+    #    for p in $(find $PWD -maxdepth 1 -regex '.*\.pkg\.tar\.\(xz\|zst\)'); do
+    #      gpg --pinentry-mode loopback --passphrase "${{ inputs.gpg-passphrase }}" --detach-sign ${p}
+    #    done
+    #    #done
         
     ## Tmate ##
     #- name: Setup tmate session
