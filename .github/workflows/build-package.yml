@@ -60,7 +60,7 @@ jobs:
           release=${pkgname}-${pkgver}-${pkgrel}             
           
           echo ${{ github.token }} | gh auth login --with-token
-          repo=$(sed 's|https://github.com/||' <<< $URL) 
+          repo=${{ github.repository }}
           
           
           gh release create ${release} --title ${release} --repo ${repo} --notes "automated release from $URL" || echo "release already exists"
